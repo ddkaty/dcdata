@@ -4,8 +4,8 @@ services:
     image: php:7.2-fpm-alpine
     container_name: myphp
     volumes:
-      - /opt/dcdata/webapp/nginx/html:/var/www/html
-      - /opt/dcdata/webapp/php/etc:/usr/local/etc
+      - /nfs/dcdata/webapp/nginx/html:/var/www/html
+      - /nfs/dcdata/webapp/php/etc:/usr/local/etc
     ports:
       - "9000:9000"
   nginx:
@@ -14,9 +14,9 @@ services:
     links: 
       - myphp
     volumes:
-      - /opt/dcdata/webapp/nginx/html:/usr/share/nginx/html
-      - /opt/dcdata/webapp/nginx/etc/nginx.conf:/etc/nginx/nginx.conf
-      - /opt/dcdata/webapp/nginx/etc/conf.d:/etc/nginx/conf.d
-      - /opt/dcdata/webapp/nginx/log:/var/log/nginx
+      - /nfs/dcdata/webapp/nginx/html:/usr/share/nginx/html
+      - /nfs/dcdata/webapp/nginx/etc/nginx.conf:/etc/nginx/nginx.conf
+      - /nfs/dcdata/webapp/nginx/etc/conf.d:/etc/nginx/conf.d
+      - /nfs/dcdata/webapp/nginx/log:/var/log/nginx
     ports:
       - "8000:80"
