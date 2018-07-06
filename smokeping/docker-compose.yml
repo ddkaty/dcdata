@@ -2,8 +2,9 @@ version: '2'
 services:
   smokeping:
     image: linuxserver/smokeping
+    container_name: myping
     volumes:
-      - /opt/dcdata/smokeping/data:/data
-      - /opt/dcdata/smokeping/etc/:/config
+      - /nfs/dcdata/smokeping/data:/data
+      - /nfs/dcdata/smokeping/etc/:/config
     ports:
       - "8080:80" 
