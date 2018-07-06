@@ -1,0 +1,39 @@
+server {
+    listen       8000;
+    server_name 47.106.171.38 ;
+    root           /usr/share/nginx/html;
+    index  index.html index.htm index.php;
+
+    access_log  /var/log/nginx/test.access.log  main;
+
+    location / {
+		try_files $uri $uri/ /index.php?$args;
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   html;
+    }
+
+    #location ~ \.php$ {
+#	root           html;
+#        fastcgi_pass   myphp:9000;
+#        #fastcgi_pass   unix:/tmp/php-cgi.sock;
+#        fastcgi_index  index.php;
+#        #fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+#        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+#        include        fastcgi_params;
+#    }
+
+
+    
+    location ~ \.php$ {
+        root           html;
+        fastcgi_pass   myphp:9000;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+        include        fastcgi_params;
+    }
+
+
+}
